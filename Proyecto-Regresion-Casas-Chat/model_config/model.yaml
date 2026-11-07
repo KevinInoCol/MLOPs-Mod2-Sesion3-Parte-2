@@ -1,0 +1,15 @@
+# Configuración del LLM que mueve al agente.
+# agent.py lee este archivo; cambiar de modelo o de nivel de razonamiento
+# no requiere tocar código.
+
+provider: openai
+model: gpt-5.1
+
+# Nivel de razonamiento de los modelos GPT-5.x: none | low | medium | high
+reasoning_effort: low
+
+# Los modelos de razonamiento no aceptan temperature distinta de la default,
+# por eso no se define aquí.
+max_tokens: 2000
+timeout: 60
+max_retries: 2

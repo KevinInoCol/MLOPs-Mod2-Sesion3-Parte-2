@@ -1,0 +1,24 @@
+#Descargarme la imagen (pull)
+FROM python:3.12-slim
+
+#Variable de Entorno
+ENV PYTHONUNBUFFERED True
+
+# set the working directory
+WORKDIR /usr/src/app
+
+# install dependencies
+COPY ./requirements.txt ./
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+# copy application code
+COPY ./application ./application
+
+EXPOSE 4000
+
+# STREAMLIT - No Borrar es parte del Template
+ENTRYPOINT ["streamlit", "run", "application/main.py", "--server.port=4000", "--server.address=0.0.0.0"]
+
+# FASTAPI - No Borrar es parte del Template
+#CMD ["uvicorn", "application.main:app", "--host", "0.0.0.0", "--port", "4000", "--proxy-headers"]

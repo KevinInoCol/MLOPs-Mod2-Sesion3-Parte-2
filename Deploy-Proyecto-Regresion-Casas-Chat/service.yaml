@@ -1,0 +1,28 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: servicio-streamlit-regresion-casas-chat-kevin-inofuente
+spec:
+  template:
+    metadata:
+      annotations:
+        autoscaling.knative.dev/minScale: "0"
+        autoscaling.knative.dev/maxScale: "3"
+    spec:
+      serviceAccountName: dev-mlops-regresion-streamlit@datapath-kevin-inofuente.iam.gserviceaccount.com
+      containerConcurrency: 8
+      timeoutSeconds: 300
+      containers:
+        - image: us-central1-docker.pkg.dev/datapath-kevin-inofuente/repositorio-regresion-casas-chat/image-regresion-casas-chat:v1
+          ports:
+            - containerPort: 4000
+          env:
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: openai-api-key
+                  key: latest
+          resources:
+            limits:
+              memory: 1Gi
+              cpu: "1"

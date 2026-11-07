@@ -1,0 +1,15 @@
+# Interfaz
+streamlit>=1.50
+
+# Agente
+langchain>=1.0
+langchain-openai>=1.0
+python-dotenv
+pyyaml
+
+# Modelo de ML: el pipeline .joblib se guardó con scikit-learn 1.8.0
+scikit-learn==1.8.0
+feature-engine>=1.8.2
+pandas>=2.0,<3
+numpy
+joblib
